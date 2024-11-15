@@ -1,0 +1,2 @@
+memoria real; memoria virtual;tamanho pagina e frame; processos; tamanho processos; frame inicial; pagina inicial; caminho logs; sleep timer
+4;16;4;4;3;0;1000;logs.txt;1000
