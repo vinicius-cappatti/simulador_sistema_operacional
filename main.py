@@ -1,50 +1,40 @@
-import funcoes as f
-from typing import List
+from utils import ler_config
+from SO import SO
+import random
 
-# Leitura dos parametros do programa
-input_path = "entrada.csv"
-param = f.ler_parametros(input_path)
+# Leitura dos parâmetros do programa
+arquivo_entrada = "entrada.csv"
+config = ler_config(arquivo_entrada)
+memoria_real = int(config['Memoria Real'])                                      # Define o tamanho da memória física
+memoria_virtual = int(config['Memoria Virtual'])                                # Define o tamanho da memória virtual
+numero_processos = int(config['Processos'])
+tamanho_processo = int(config['Tam. Processo'])
+tamanho_frame_pagina = int(config['Tam. Frame/Pagina'])
+pagina_inicial_real = int(config['Pagina Inicial Real'])
+pagina_inicial_virtual = int(config['Pagina Inicial Virtual'])
+delay_operacao_normal = int(config['Delay Operacao Normal'])
+delay_acesso_memoria_secundaria = int(config['Delay Acesso Memoria Secundaria'])
+caminho_logs = config['Caminho Logs']
 
-tam_mem_fis = int(param[0])     # Define o tamanho da memoria fisica
-tam_mem_vir = int(param[1])     # Define o tamanho da memoria virtual
-tam_frm = int(param[2])         # Define o tamanho de um frame
-num_proc = int(param[3])        # Define o numero de processos rodando
-tam_procs = int(param[4])       # Define o tamanho dos processos e o numero de paginas de cada processo
-id_frame_ini = int(param[5])    # Define o endereco do frame inicial da memoria fisica
-id_pag_ini = int(param[6])      # Define o endereco da pagina inicial da memoria virtual 
-logs_path = param[7]            # Define o caminho para o arquivo de saida dos logs
-sleep_param = int(param[8])     # Define o tempo de dormencia de cada operacao que envolve acesso na memoria em ms
+def main():
+    # Inicializa o SO com a configuração especificada
+    sistema_operacional = SO(tam_mem_fis=memoria_real, 
+                             id_frame_initial=pagina_inicial_real, 
+                             tam_frm=tamanho_frame_pagina)
 
-# Inicializacao da memoria fisica
-memo_fis = f.MemFis(tam_mem_fis= tam_mem_fis, id_frm_ini= id_frame_ini, tam_frm= tam_frm)
+    # Cria alguns processos
+    sistema_operacional.criar_processo(pid=1, tamanho=tamanho_processo, tamanho_pagina=tamanho_frame_pagina)
+    sistema_operacional.criar_processo(pid=2, tamanho=tamanho_processo, tamanho_pagina=tamanho_frame_pagina)
+    sistema_operacional.criar_processo(pid=3, tamanho=tamanho_processo, tamanho_pagina=tamanho_frame_pagina)
 
-# Inicializacao da memoria virtual
-memo_vir: List[f.Pagina] = []
-for p in range(tam_mem_vir):
-    pAtual = f.Pagina(id= id_pag_ini + p, alocada_mem_fis= False)
-    memo_vir.append(pAtual)
-print("Memoria virtual inicializada com sucesso")
+    # Simula algumas operações de acesso à memória
+    for _ in range(20):
+        pid_aleatorio = random.choice([1, 2, 3])
+        endereco_aleatorio = random.randint(0, 1023)  # Endereço aleatório até 1023
+        sistema_operacional.acessar_memoria(pid_aleatorio, endereco_aleatorio)
+        sistema_operacional.imprimir_estado_memoria()
 
-# Inicializar os processos em uma lista
-processos: List[f.Processo] = []
-for i in range(num_proc):
-    tp = f.PageTable(lista_frames= [])
-    for c in range(tam_procs):
-        tp.lista_frames.append(None) # Insere dados vazios na tabela de paginas do processo
-    prAtual = f.Processo(pid = i, tamanho= tam_procs, tab_pags= tp)
-    processos.append(prAtual)
-print("Processos inicializados com sucesso")
+    sistema_operacional.imprimir_estado_memoria()
 
-print("\n=-=-=-=-=-=-=-=-=-=-=-=\n")
-
-print("STATUS INICIAL DA MEMORIA FISICA")
-f.print_status(memo_fis= memo_fis)
-
-for pg in range(tam_procs):
-    for proc in processos:
-        ex = proc.tab_pags.existe(pg)
-
-        if(ex):
-            print(f"A pagina {pg} do processo {proc.pid} esta na memoria fisica")
-        else:
-            print(f"[PAGE FAULT]")
+if __name__ == "__main__":
+    main()

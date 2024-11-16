@@ -24,6 +24,7 @@ class PageTable:
         # Inicializa a tabela com None para cada página
         self.tabela: List[Frame] = [None] * num_paginas
         self.tamanho_pagina = tamanho_pagina
+        self.num_paginas = num_paginas
 
     def traduzir_endereco_virtual(self, end_vir: int) -> tuple:
         """
@@ -77,13 +78,14 @@ class Processo:
     """
     Representa um processo no sistema.
     """
-    def __init__(self, pid: int, tamanho: int, tamanho_pagina: int):
+    def __init__(self, pid: int, num_enderecos: int, tamanho_pagina: int):
         self.pid = pid
-        self.tamanho = tamanho
+        self.num_enderecos = num_enderecos
         self.tamanho_pagina = tamanho_pagina
-        num_paginas = (tamanho + tamanho_pagina - 1) // tamanho_pagina
-        self.tab_pags = PageTable(num_paginas, tamanho_pagina)
-        self.memo_virtual = list(range(tamanho))
+        self.num_paginas = (num_enderecos + tamanho_pagina - 1) // tamanho_pagina   # Cria uma página extra para o último endereço se sobrar
+        # (1025 + 256 - 1) // 256 = 5 (inclui uma página extra para o último endereço)
+        self.tab_pags = PageTable(self.num_paginas, tamanho_pagina)
+        self.memo_virtual = list(range(num_enderecos))
 
     def acessar_dados(self, endereco_acessado: int) -> str:
         """
@@ -103,8 +105,8 @@ class MemFis:
     """
     Representa a memória física do sistema.
     """
-    def __init__(self, tam_mem_fis: int, id_frm_ini: int, tam_frm: int):
-        self.memoria: List[Frame] = [Frame(id_frm_ini + i * tam_frm) for i in range(tam_mem_fis)]
+    def __init__(self, tam_mem_fis: int, id_frame_initial: int, tam_frm: int):
+        self.memoria: List[Frame] = [Frame(id_frame_initial + i * tam_frm) for i in range(tam_mem_fis)]
         self.firstIn = 0  # Índice para política de substituição FIFO
 
     def isFull(self) -> bool:

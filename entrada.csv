@@ -1,2 +1,11 @@
-memoria real;memoria virtual;tamanho pagina e frame;processos;tamanho processos;frame inicial;caminho logs;sleep timer
-4;16;4;4;3;1000;logs.txt;1000
+Parametro;Valor
+Memoria Real;4
+Memoria Virtual;16
+Processos;4
+Tam. Processo;3
+Tam. Frame/Pagina;3
+Pagina Inicial Real;0
+Pagina Inicial Virtual;1000
+Delay Operacao Normal;10
+Delay Acesso Memoria Secundaria;100
+Caminho Logs;./logs/simulacao.log
