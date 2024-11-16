@@ -18,11 +18,6 @@ class Frame:
     def isOcupado(self):
         return self.ocupado
 
-class Pagina:
-    def __init__(self, id: int, alocada_mem_fis: bool):
-        self.id = id                            # ID identificador da pagina
-        self.alocada_mem_fis = alocada_mem_fis  # Indica se a pagina em questao esta alocada na memoria fisica
-
 def ler_parametros(caminho_csv):
     with open(caminho_csv, mode='r', encoding='utf-8') as arquivo:
         leitor = csv.reader(arquivo, delimiter= ";")
@@ -64,10 +59,11 @@ class PageTable:
             return True
 
 class Processo:
-    def __init__(self, pid: int, tamanho: int, tab_pags: PageTable):
+    def __init__(self, pid: int, tamanho: int, tab_pags: PageTable, mem_vir: List[int]):
         self.pid = pid                          # Identificador do processo
         self.tamanho = tamanho                  # Tamanho do processo
         self.tab_pags = tab_pags                # Tabela de paginas 
+        self.memo_virtual = mem_vir             # Memoria virtual de cada processo
     
     def acessar_dados(self, endereco_acessado: int):
         if(endereco_acessado < 0 or endereco_acessado >= len(self.tab_pags.lista_frames)):
@@ -101,7 +97,12 @@ class MemFis:
                 return False
         return True
 
-    def find
+    def findLivre(self):
+        for frm in self.memoria:
+            if(frm.id_processo == None):
+                return frm
+        return None             # Se retorna None, a memoria fisica esta cheia
+
 
 def print_status(memo_fis: List[Frame]):
     for frame in memo_fis:
@@ -121,4 +122,5 @@ def carregarPag(memo_fis: MemFis, proc: Processo, ende: int):
 
         memo_fis.firstIn += 1
     else:
-        
+        frame_livre = memo_fis.findLivre()
+         
