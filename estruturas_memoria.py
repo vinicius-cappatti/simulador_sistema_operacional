@@ -114,10 +114,30 @@ class MemFis:
                 return frame
         return None
     
-    def printStatus(self):
+    def find_posicao_frame_livre(self) -> int:
+        """Encontra a posição do primeiro frame livre na memória física"""
+        for i in range(len(self.memoria)):
+            if not self.memoria[i].isOcupado():
+                return i
+        return None
+
+    def printStatus(self, caminho_log: str):
         """Imprime o status atual da memória física"""
-        for frame in self.memoria:
-            if frame.isOcupado():
-                print(f"P{frame.id_processo} -> pg. {frame.id_pagina}")
-            else:
-                print("---")
+        with open(caminho_log, "a") as arquivo_logs:
+            for frame in self.memoria:
+                if frame.isOcupado():
+                    arquivo_logs.write(f"P{frame.id_processo} -> pg. {frame.id_pagina}")
+                else:
+                    arquivo_logs.write("---")
+
+class Pagina:
+    def __init__(self, endereco: int, tamanho_pagina: int, id_processo: int):
+        self.endereco = endereco
+        self.tamanho = tamanho_pagina
+        self.id_processo = id_processo
+class MemVir:
+    def __init__(self, endereco_inicial: int, qnt_paginas: int, tamanho_pagina: int):
+        self.endereco_inicial = endereco_inicial
+        self.qnt_paginas = qnt_paginas
+        self.tamanho_pagina = tamanho_pagina
+        self.memoria: List[Pagina] = [Pagina(endereco_inicial + i * tamanho_pagina, -1) for i in range(qnt_paginas)]

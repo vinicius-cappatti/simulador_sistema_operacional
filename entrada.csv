@@ -4,8 +4,8 @@ Memoria Virtual;16
 Processos;4
 Tam. Processo;3
 Tam. Frame/Pagina;3
-Pagina Inicial Real;0
+Frame Inicial;0
 Pagina Inicial Virtual;1000
-Delay Operacao Normal;10
-Delay Acesso Memoria Secundaria;100
-Caminho Logs;./logs/simulacao.log
+Delay Operacao Normal;1
+Delay Acesso Memoria Secundaria;2
+Caminho Logs;simulacao.log
