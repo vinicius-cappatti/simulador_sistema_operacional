@@ -67,12 +67,6 @@ class PageTable:
         return 0 <= numero_pagina < len(self.tabela) and self.tabela[numero_pagina] is not None
 
 
-class Pagina:
-    def __init__(self, id: int, end_ini: int, dados: str):
-        self.id = id                            # ID identificador da pagina
-        self.end_ini = end_ini                  # Endereco inicial da pagina, o final sera obtido por inicial + tamanho (definido no processo)
-        self.dados = dados                      # Dados dessa pagina
-
 class Processo:
     """
     Representa um processo no sistema.
@@ -117,3 +111,11 @@ class MemFis:
             if not frame.isOcupado():
                 return frame
         return None
+    
+    def printStatus(self):
+        """Imprime o status atual da memória física"""
+        for frame in self.memoria:
+            if frame.isOcupado():
+                print(f"P{frame.id_processo} -> pg. {frame.id_pagina}")
+            else:
+                print("---")

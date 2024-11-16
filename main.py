@@ -1,4 +1,4 @@
-import funcoes as f
+import estruturas_memoria as em
 from typing import List
 
 # Leitura dos parametros do programa
@@ -16,29 +16,23 @@ logs_path = param[7]            # Define o caminho para o arquivo de saida dos l
 sleep_param = int(param[8])     # Define o tempo de dormencia de cada operacao que envolve acesso na memoria em ms
 
 # Inicializacao da memoria fisica
-memo_fis = f.MemFis(tam_mem_fis= tam_mem_fis, id_frm_ini= id_frame_ini, tam_frm= tam_frm)
+memo_fis = em.MemFis(tam_mem_fis= tam_mem_fis, id_frm_ini= id_frame_ini, tam_frm= tam_frm)
 
-# Inicializacao da memoria virtual
-memo_vir: List[f.Pagina] = []
-for p in range(tam_mem_vir):
-    pAtual = f.Pagina(id= id_pag_ini + p, alocada_mem_fis= False)
-    memo_vir.append(pAtual)
-print("Memoria virtual inicializada com sucesso")
 
 # Inicializar os processos em uma lista
 processos: List[f.Processo] = []
 for i in range(num_proc):
-    tp = f.PageTable(lista_frames= [])
+    tp = em.PageTable(lista_frames= [])
     for c in range(tam_procs):
         tp.lista_frames.append(None) # Insere dados vazios na tabela de paginas do processo
-    prAtual = f.Processo(pid = i, tamanho= tam_procs, tab_pags= tp)
+    prAtual = em.Processo(pid = i, tamanho= tam_procs, tab_pags= tp)
     processos.append(prAtual)
 print("Processos inicializados com sucesso")
 
 print("\n=-=-=-=-=-=-=-=-=-=-=-=\n")
 
 print("STATUS INICIAL DA MEMORIA FISICA")
-f.print_status(memo_fis= memo_fis)
+memo_fis.printStatus()
 
 for pg in range(tam_procs):
     for proc in processos:
