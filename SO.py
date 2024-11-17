@@ -23,7 +23,7 @@ class SO:
         dicionario de processos do objeto"""
         self.processos[pid] = Processo(pid, paginas_por_processo, tamanho_pagina)
         with open(caminho_logs, "a", encoding= "utf-8") as arquivo_logs:
-            arquivo_logs.write(f"Processo {pid} criado com tamanho {paginas_por_processo} e tamanho de página {tamanho_pagina}\n")
+            arquivo_logs.write(f"\n\nProcesso {pid} criado com tamanho {paginas_por_processo} e tamanho de página {tamanho_pagina}")
         time.sleep(delay_padrao)  # Simulando um atraso na criação do processo
 
     def alocar_memoria_virtual(self, processo: Processo, indice: int, caminho_logs: str):

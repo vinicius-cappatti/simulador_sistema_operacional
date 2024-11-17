@@ -1,20 +1,24 @@
+
+
 Processo 1 criado com tamanho 3 e tamanho de página 4096
+Página 1000 da memória virtual alocada para o processo 1
+Página 5096 da memória virtual alocada para o processo 1
+Página 9192 da memória virtual alocada para o processo 1
 
-Página 0 da memória virtual alocada para o processo 1
-Página 1 da memória virtual alocada para o processo 1
-Página 2 da memória virtual alocada para o processo 1Processo 2 criado com tamanho 3 e tamanho de página 4096
+Processo 2 criado com tamanho 3 e tamanho de página 4096
+Página 13288 da memória virtual alocada para o processo 2
+Página 17384 da memória virtual alocada para o processo 2
+Página 21480 da memória virtual alocada para o processo 2
 
-Página 0 da memória virtual alocada para o processo 2
-Página 1 da memória virtual alocada para o processo 2
-Página 2 da memória virtual alocada para o processo 2Processo 3 criado com tamanho 3 e tamanho de página 4096
+Processo 3 criado com tamanho 3 e tamanho de página 4096
+Página 25576 da memória virtual alocada para o processo 3
+Página 29672 da memória virtual alocada para o processo 3
+Página 33768 da memória virtual alocada para o processo 3
 
-Página 0 da memória virtual alocada para o processo 3
-Página 1 da memória virtual alocada para o processo 3
-Página 2 da memória virtual alocada para o processo 3Processo 4 criado com tamanho 3 e tamanho de página 4096
-
-Página 0 da memória virtual alocada para o processo 4
-Página 1 da memória virtual alocada para o processo 4
-Página 2 da memória virtual alocada para o processo 4
+Processo 4 criado com tamanho 3 e tamanho de página 4096
+Página 37864 da memória virtual alocada para o processo 4
+Página 41960 da memória virtual alocada para o processo 4
+Página 46056 da memória virtual alocada para o processo 4
 Estado atual da memória física:
 
 Frame 0: Livre
@@ -23,48 +27,48 @@ Frame 8192: Livre
 Frame 12288: Livre
 Frame mais antigo é 0
 
-Processo 4 está tentando acessar a página 6
-[PAGE FAULT] Página 6 não está na memória física
-ERRO!!! Não foi possível atualizar o frame 0 com a página 6
-Estado atual da memória física:
-
-Frame 0: Processo 4, Página 6
-Frame 4096: Livre
-Frame 8192: Livre
-Frame 12288: Livre
-Frame mais antigo é 0
-
-Processo 2 está tentando acessar a página 2
+Processo 1 está tentando acessar a página 2
 [PAGE FAULT] Página 2 não está na memória física
-Frame 4096 atualizado com sucesso!!! Agora ele contém a página 2
+ERRO!!! Não foi possível atualizar o frame 0 com a página 2
 Estado atual da memória física:
 
-Frame 0: Processo 4, Página 6
-Frame 4096: Processo 2, Página 2
+Frame 0: Processo 1, Página 2
+Frame 4096: Livre
 Frame 8192: Livre
 Frame 12288: Livre
 Frame mais antigo é 0
 
 Processo 2 está tentando acessar a página 3
 [PAGE FAULT] Página 3 não está na memória física
-ERRO!!! Não foi possível atualizar o frame 8192 com a página 3
+ERRO!!! Não foi possível atualizar o frame 4096 com a página 3
 Estado atual da memória física:
 
-Frame 0: Processo 4, Página 6
-Frame 4096: Processo 2, Página 2
-Frame 8192: Processo 2, Página 3
+Frame 0: Processo 1, Página 2
+Frame 4096: Processo 2, Página 3
+Frame 8192: Livre
 Frame 12288: Livre
 Frame mais antigo é 0
 
-Processo 2 está tentando acessar a página 4
+Processo 4 está tentando acessar a página 4
 [PAGE FAULT] Página 4 não está na memória física
-ERRO!!! Não foi possível atualizar o frame 12288 com a página 4
+ERRO!!! Não foi possível atualizar o frame 8192 com a página 4
 Estado atual da memória física:
 
-Frame 0: Processo 4, Página 6
-Frame 4096: Processo 2, Página 2
-Frame 8192: Processo 2, Página 3
-Frame 12288: Processo 2, Página 4
+Frame 0: Processo 1, Página 2
+Frame 4096: Processo 2, Página 3
+Frame 8192: Processo 4, Página 4
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 4 está tentando acessar a página 5
+[PAGE FAULT] Página 5 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 12288 com a página 5
+Estado atual da memória física:
+
+Frame 0: Processo 1, Página 2
+Frame 4096: Processo 2, Página 3
+Frame 8192: Processo 4, Página 4
+Frame 12288: Processo 4, Página 5
 Frame mais antigo é 0
 
 Processo 3 está tentando acessar a página 4
@@ -73,32 +77,33 @@ ERRO!!! Não foi possível atualizar o frame 0 com a página 4
 Estado atual da memória física:
 
 Frame 0: Processo 3, Página 4
-Frame 4096: Processo 2, Página 2
-Frame 8192: Processo 2, Página 3
-Frame 12288: Processo 2, Página 4
+Frame 4096: Processo 2, Página 3
+Frame 8192: Processo 4, Página 4
+Frame 12288: Processo 4, Página 5
 Frame mais antigo é 1
 
-Processo 3 está tentando acessar a página 4
-[PAGE FAULT] Página 4 não está na memória física
-ERRO!!! Não foi possível atualizar o frame 4096 com a página 4
+Processo 3 está tentando acessar a página 5
+[PAGE FAULT] Página 5 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 4096 com a página 5
 Estado atual da memória física:
 
 Frame 0: Processo 3, Página 4
-Frame 4096: Processo 3, Página 4
-Frame 8192: Processo 2, Página 3
-Frame 12288: Processo 2, Página 4
+Frame 4096: Processo 3, Página 5
+Frame 8192: Processo 4, Página 4
+Frame 12288: Processo 4, Página 5
 Frame mais antigo é 2
 
-Processo 2 está tentando acessar a página 2
-Processo 2 acessou o frame 4096 que contém a página 4
+Processo 1 está tentando acessar a página 2
+[PAGE FAULT] Página 2 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 8192 com a página 2
 Estado atual da memória física:
 
 Frame 0: Processo 3, Página 4
-Frame 4096: Processo 3, Página 4
-Frame 8192: Processo 2, Página 3
-Frame 12288: Processo 2, Página 4
-Frame mais antigo é 2
+Frame 4096: Processo 3, Página 5
+Frame 8192: Processo 1, Página 2
+Frame 12288: Processo 4, Página 5
+Frame mais antigo é 3
 
-Processo 2 está tentando acessar a página 4
-[PAGE FAULT] Página 4 não está na memória física
-ERRO!!! Não foi possível atualizar o frame 8192 com a página 4
+Processo 1 está tentando acessar a página 1
+[PAGE FAULT] Página 1 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 12288 com a página 1

@@ -37,6 +37,7 @@ def main():
                              inicio_memoria_virtual= pagina_inicial_virtual)
 
     # Cria alguns processos
+    pagina_criada = 0
     for i in range(numero_processos):
         # Função criar_processo armazena em uma lista de processos dentro do objeto SO
         sistema_operacional.criar_processo(pid= i + 1, 
@@ -46,9 +47,12 @@ def main():
                                            caminho_logs= caminho_logs)
 
         for k in range(qnt_paginas_processo):
-            sistema_operacional.alocar_memoria_virtual(sistema_operacional.processos[i + 1], k, caminho_logs)
+            sistema_operacional.alocar_memoria_virtual(sistema_operacional.processos[i + 1], 
+                                                       pagina_inicial_virtual + tamanho_frame_pagina * pagina_criada,
+                                                       caminho_logs)
+            pagina_criada += 1
 
-    for _ in range(limite_iteracoes):
+    for acesso in range(limite_iteracoes):
         sistema_operacional.imprimir_estado_memoria(caminho_logs)
         # 1. Selecionar um processo aleatório
         pid_processo_atual = random.randint(1, numero_processos)
@@ -68,7 +72,8 @@ def main():
                                             caminho_logs)
 
         #Implementação da pausa
-        opcao = input("Operação pausada, selecione uma opção:\n1. [a]bortar\n2. [c]ontinuar\n").lower().replace(" ", "")
+        print(f"Acesso {acesso + 1}/{limite_iteracoes}")
+        opcao = input("Operação pausada, selecione uma opção:\n1. [a]bortar\n2. [c]ontinuar\nescolha sua opção: ").lower().replace(" ", "")
         while opcao != "a" and opcao != "c":
             opcao = input("Selecione uma opção válida [a/c]:").lower().replace(" ", "")
         
