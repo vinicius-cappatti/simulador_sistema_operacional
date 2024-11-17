@@ -1,171 +1,104 @@
-Processo 1 criado com tamanho 3 e tamanho de página 3
-Processo 2 criado com tamanho 3 e tamanho de página 3
-Processo 3 criado com tamanho 3 e tamanho de página 3
-Processo 4 criado com tamanho 3 e tamanho de página 3
-Erro: Número de página 341 inválido para o processo 3
-Erro ao acessar memória: Página para o endereço 1025 não está na memória física
+Processo 1 criado com tamanho 3 e tamanho de página 4096
+
+Página 0 da memória virtual alocada para o processo 1
+Página 1 da memória virtual alocada para o processo 1
+Página 2 da memória virtual alocada para o processo 1Processo 2 criado com tamanho 3 e tamanho de página 4096
+
+Página 0 da memória virtual alocada para o processo 2
+Página 1 da memória virtual alocada para o processo 2
+Página 2 da memória virtual alocada para o processo 2Processo 3 criado com tamanho 3 e tamanho de página 4096
+
+Página 0 da memória virtual alocada para o processo 3
+Página 1 da memória virtual alocada para o processo 3
+Página 2 da memória virtual alocada para o processo 3Processo 4 criado com tamanho 3 e tamanho de página 4096
+
+Página 0 da memória virtual alocada para o processo 4
+Página 1 da memória virtual alocada para o processo 4
+Página 2 da memória virtual alocada para o processo 4
 Estado atual da memória física:
 
 Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 349 inválido para o processo 4
-Erro ao acessar memória: Página para o endereço 1047 não está na memória física
+Frame 4096: Livre
+Frame 8192: Livre
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 4 está tentando acessar a página 6
+[PAGE FAULT] Página 6 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 0 com a página 6
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 338 inválido para o processo 1
-Erro ao acessar memória: Página para o endereço 1014 não está na memória física
+Frame 0: Processo 4, Página 6
+Frame 4096: Livre
+Frame 8192: Livre
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 2 está tentando acessar a página 2
+[PAGE FAULT] Página 2 não está na memória física
+Frame 4096 atualizado com sucesso!!! Agora ele contém a página 2
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 340 inválido para o processo 3
-Erro ao acessar memória: Página para o endereço 1021 não está na memória física
+Frame 0: Processo 4, Página 6
+Frame 4096: Processo 2, Página 2
+Frame 8192: Livre
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 2 está tentando acessar a página 3
+[PAGE FAULT] Página 3 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 8192 com a página 3
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 338 inválido para o processo 1
-Erro ao acessar memória: Página para o endereço 1016 não está na memória física
+Frame 0: Processo 4, Página 6
+Frame 4096: Processo 2, Página 2
+Frame 8192: Processo 2, Página 3
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 2 está tentando acessar a página 4
+[PAGE FAULT] Página 4 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 12288 com a página 4
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 341 inválido para o processo 3
-Erro ao acessar memória: Página para o endereço 1025 não está na memória física
+Frame 0: Processo 4, Página 6
+Frame 4096: Processo 2, Página 2
+Frame 8192: Processo 2, Página 3
+Frame 12288: Processo 2, Página 4
+Frame mais antigo é 0
+
+Processo 3 está tentando acessar a página 4
+[PAGE FAULT] Página 4 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 0 com a página 4
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 338 inválido para o processo 4
-Erro ao acessar memória: Página para o endereço 1015 não está na memória física
+Frame 0: Processo 3, Página 4
+Frame 4096: Processo 2, Página 2
+Frame 8192: Processo 2, Página 3
+Frame 12288: Processo 2, Página 4
+Frame mais antigo é 1
+
+Processo 3 está tentando acessar a página 4
+[PAGE FAULT] Página 4 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 4096 com a página 4
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 349 inválido para o processo 4
-Erro ao acessar memória: Página para o endereço 1048 não está na memória física
+Frame 0: Processo 3, Página 4
+Frame 4096: Processo 3, Página 4
+Frame 8192: Processo 2, Página 3
+Frame 12288: Processo 2, Página 4
+Frame mais antigo é 2
+
+Processo 2 está tentando acessar a página 2
+Processo 2 acessou o frame 4096 que contém a página 4
 Estado atual da memória física:
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 334 inválido para o processo 2
-Erro ao acessar memória: Página para o endereço 1003 não está na memória física
-Estado atual da memória física:
+Frame 0: Processo 3, Página 4
+Frame 4096: Processo 3, Página 4
+Frame 8192: Processo 2, Página 3
+Frame 12288: Processo 2, Página 4
+Frame mais antigo é 2
 
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 343 inválido para o processo 3
-Erro ao acessar memória: Página para o endereço 1030 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 337 inválido para o processo 1
-Erro ao acessar memória: Página para o endereço 1013 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 339 inválido para o processo 1
-Erro ao acessar memória: Página para o endereço 1019 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 344 inválido para o processo 1
-Erro ao acessar memória: Página para o endereço 1033 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 335 inválido para o processo 1
-Erro ao acessar memória: Página para o endereço 1005 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 343 inválido para o processo 4
-Erro ao acessar memória: Página para o endereço 1030 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 343 inválido para o processo 2
-Erro ao acessar memória: Página para o endereço 1030 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 345 inválido para o processo 2
-Erro ao acessar memória: Página para o endereço 1036 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 333 inválido para o processo 3
-Erro ao acessar memória: Página para o endereço 1000 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 346 inválido para o processo 3
-Erro ao acessar memória: Página para o endereço 1040 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-Erro: Número de página 344 inválido para o processo 2
-Erro ao acessar memória: Página para o endereço 1033 não está na memória física
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
-
-Estado atual da memória física:
-
-Frame 0: Livre
-Frame 3: Livre
-Frame 6: Livre
-Frame 9: Livre
+Processo 2 está tentando acessar a página 4
+[PAGE FAULT] Página 4 não está na memória física
+ERRO!!! Não foi possível atualizar o frame 8192 com a página 4

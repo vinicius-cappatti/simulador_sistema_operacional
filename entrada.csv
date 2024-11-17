@@ -2,10 +2,11 @@ Parametro;Valor
 Memoria Real;4
 Memoria Virtual;16
 Processos;4
-Tam. Processo;3
-Tam. Frame/Pagina;3
+Quantidade de paginas por processo;3
+Tam. Frame/Pagina;4096
 Frame Inicial;0
 Pagina Inicial Virtual;1000
 Delay Operacao Normal;1
 Delay Acesso Memoria Secundaria;2
 Caminho Logs;simulacao.log
+Limite de iteracoes;8
