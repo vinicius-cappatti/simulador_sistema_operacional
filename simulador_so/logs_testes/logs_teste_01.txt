@@ -1,0 +1,176 @@
+Memória virtual inicializada com sucesso
+
+
+Processo 1 criado com tamanho 3 e tamanho de página 4096
+Processo 1 alocado no endereço 1 da memória virtual
+Processo 1 alocado no endereço 2 da memória virtual
+Processo 1 alocado no endereço 3 da memória virtual
+
+Processo 2 criado com tamanho 3 e tamanho de página 4096
+Processo 2 alocado no endereço 4 da memória virtual
+Processo 2 alocado no endereço 5 da memória virtual
+Processo 2 alocado no endereço 6 da memória virtual
+
+Processo 3 criado com tamanho 3 e tamanho de página 4096
+Processo 3 alocado no endereço 7 da memória virtual
+Processo 3 alocado no endereço 8 da memória virtual
+Processo 3 alocado no endereço 9 da memória virtual
+
+Processo 4 criado com tamanho 3 e tamanho de página 4096
+Processo 4 alocado no endereço 10 da memória virtual
+Processo 4 alocado no endereço 11 da memória virtual
+Processo 4 alocado no endereço 12 da memória virtual
+
+Estado inicial da memoria virtual:
+Página 1: Processo 1
+Página 2: Processo 1
+Página 3: Processo 1
+Página 4: Processo 2
+Página 5: Processo 2
+Página 6: Processo 2
+Página 7: Processo 3
+Página 8: Processo 3
+Página 9: Processo 3
+Página 10: Processo 4
+Página 11: Processo 4
+Página 12: Processo 4
+Página 13: Livre
+Página 14: Livre
+Página 15: Livre
+Página 16: Livre
+
+Estado atual da memória física:
+
+Frame 0: Livre
+Frame 4096: Livre
+Frame 8192: Livre
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 2 está tentando acessar o endereço 24972 da página 6
+[PAGE FAULT] Página 6 não está na memória física
+Frame 0 atualizado com sucesso!!! Agora ele contém a página 6
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 6
+Frame 4096: Livre
+Frame 8192: Livre
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 3 está tentando acessar o endereço 37459 da página 9
+[PAGE FAULT] Página 9 não está na memória física
+Frame 4096 atualizado com sucesso!!! Agora ele contém a página 9
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 6
+Frame 4096: Processo 3, Página 9
+Frame 8192: Livre
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 1 está tentando acessar o endereço 2123 da página 1
+[PAGE FAULT] Página 1 não está na memória física
+Frame 8192 atualizado com sucesso!!! Agora ele contém a página 1
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 6
+Frame 4096: Processo 3, Página 9
+Frame 8192: Processo 1, Página 1
+Frame 12288: Livre
+Frame mais antigo é 0
+
+Processo 4 está tentando acessar o endereço 48115 da página 12
+[PAGE FAULT] Página 12 não está na memória física
+Frame 12288 atualizado com sucesso!!! Agora ele contém a página 12
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 6
+Frame 4096: Processo 3, Página 9
+Frame 8192: Processo 1, Página 1
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 0
+
+Processo 3 está tentando acessar o endereço 34279 da página 9
+Processo 3 acessou o frame 4096 que contém a página 9
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 6
+Frame 4096: Processo 3, Página 9
+Frame 8192: Processo 1, Página 1
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 0
+
+Processo 2 está tentando acessar o endereço 19067 da página 5
+[PAGE FAULT] Página 5 não está na memória física
+Frame 0 atualizado com sucesso!!! Agora ele contém a página 5
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 5
+Frame 4096: Processo 3, Página 9
+Frame 8192: Processo 1, Página 1
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 1
+
+Processo 4 está tentando acessar o endereço 42097 da página 11
+[PAGE FAULT] Página 11 não está na memória física
+Frame 4096 atualizado com sucesso!!! Agora ele contém a página 11
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 5
+Frame 4096: Processo 4, Página 11
+Frame 8192: Processo 1, Página 1
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 2
+
+Processo 4 está tentando acessar o endereço 47800 da página 12
+Processo 4 acessou o frame 12288 que contém a página 12
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 5
+Frame 4096: Processo 4, Página 11
+Frame 8192: Processo 1, Página 1
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 2
+
+Processo 1 está tentando acessar o endereço 3870 da página 1
+Processo 1 acessou o frame 8192 que contém a página 1
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 5
+Frame 4096: Processo 4, Página 11
+Frame 8192: Processo 1, Página 1
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 2
+
+Processo 2 está tentando acessar o endereço 14235 da página 4
+[PAGE FAULT] Página 4 não está na memória física
+Frame 8192 atualizado com sucesso!!! Agora ele contém a página 4
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 5
+Frame 4096: Processo 4, Página 11
+Frame 8192: Processo 2, Página 4
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 3
+
+Processo 2 está tentando acessar o endereço 19793 da página 5
+Processo 2 acessou o frame 0 que contém a página 5
+
+Estado atual da memória física:
+
+Frame 0: Processo 2, Página 5
+Frame 4096: Processo 4, Página 11
+Frame 8192: Processo 2, Página 4
+Frame 12288: Processo 4, Página 12
+Frame mais antigo é 3

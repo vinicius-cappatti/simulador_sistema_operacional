@@ -1,0 +1,12 @@
+Parametro;Valor
+Memoria Real;5
+Memoria Virtual;20
+Processos;4
+Quantidade de paginas por processo;4
+Tam. Frame/Pagina;1000
+Frame Inicial;0
+Pagina Inicial Virtual;0
+Delay Operacao Normal;1
+Delay Acesso Memoria Secundaria;2
+Caminho Logs;logs_testes/logs_teste_02.txt
+Limite de iteracoes;20
