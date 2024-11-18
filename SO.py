@@ -4,7 +4,7 @@ import time
 import random
 from typing import List, Dict
 
-from estruturas_memoria import Frame, LinhaPageTable, MemFis, Processo
+from estruturas_memoria import MemFis, Processo
 
 class SO:
     """
@@ -15,23 +15,28 @@ class SO:
         self.processos: Dict[int, Processo] = {}
         self.end_virtual_inicial = inicio_memoria_virtual
         self.memoria_virtual:  Dict[int, Processo] = {}
+        self.tam_pagina_frames = tam_frm_pagina
 
     # FUNÇÕES DE INICIALIZAÇÃO DE OBJETOS ------------------------------------------------------------------------------
 
-    def criar_processo(self, pid: int, paginas_por_processo: int, tamanho_pagina: int, delay_padrao: int, caminho_logs: str):
+    def criar_processo(self, pid: int, paginas_por_processo: int, tamanho_pagina: int, endereco_pagina_criada: int,
+                       delay_padrao: int, caminho_logs: str):
         """Cria um processo novo com as especificações do parâmetro e armazena dentro do
         dicionario de processos do objeto"""
-        self.processos[pid] = Processo(pid, paginas_por_processo, tamanho_pagina)
+        self.processos[pid] = Processo(pid, paginas_por_processo, tamanho_pagina, endereco_pagina_criada)
         with open(caminho_logs, "a", encoding= "utf-8") as arquivo_logs:
             arquivo_logs.write(f"\n\nProcesso {pid} criado com tamanho {paginas_por_processo} e tamanho de página {tamanho_pagina}")
+            for i in range(paginas_por_processo):
+                arquivo_logs.write(f"\nPágina {endereco_pagina_criada + i} da memória virtual alocada para o processo {pid}")
         time.sleep(delay_padrao)  # Simulando um atraso na criação do processo
 
     def alocar_memoria_virtual(self, processo: Processo, indice: int, caminho_logs: str):
         """Aloca um processo na memória virtual e inicializa sua tabela de páginas"""
         with open(caminho_logs, "a", encoding="utf-8")as arquivo_logs:
             self.memoria_virtual[indice] = processo
-            processo.tab_pags.tabela.append(LinhaPageTable(indice, None))
+            processo.tab_pags.criar_na_tabela_de_pagina(indice, None)
             arquivo_logs.write(f"\nPágina {indice} da memória virtual alocada para o processo {processo.pid}")
+
     # FUNÇÕES DE ACESSO NA MEMÓRIA -------------------------------------------------------------------------------------
 
     def acessar_memoria(self, pid: int, pagina_acessada: int, delay_normal: int, delay_acesso_mem_sec: int, caminho_logs: str):
@@ -47,7 +52,7 @@ class SO:
             arquivo_logs.write(f"\nProcesso {pid} está tentando acessar a página {pagina_acessada}")
 
             processo = self.processos.get(pid)
-            frame = processo.tab_pags.retornar_frame(pagina_acessada)
+            frame = processo.tab_pags.tabela[pagina_acessada]
 
             if frame != None and frame != -1:
                 time.sleep(delay_normal)
@@ -70,10 +75,9 @@ class SO:
             frame.id_pagina = pagina_acessada
 
             self.mem_fisica.memoria[pos_frame] = frame
-            if processo.tab_pags.atualizar_tabela_paginas(pagina_acessada, frame):
-                arquivo_logs.write(f"\nFrame {frame.id} atualizado com sucesso!!! Agora ele contém a página {pagina_acessada}")
-            else:
-                arquivo_logs.write(f"\nERRO!!! Não foi possível atualizar o frame {frame.id} com a página {pagina_acessada}")
+            processo.tab_pags.tabela[pagina_acessada] = frame
+            arquivo_logs.write(f"\nFrame {frame.id} atualizado com sucesso!!! Agora ele contém a página {pagina_acessada}")
+
 
 # FUNÇÃO DE MAPEAMENTO -------------------------------------------------------------------------------------
   
@@ -82,12 +86,19 @@ class SO:
             if pagina.id_processo == processo.pid and pagina.nro_pagina_no_processo == pagina_do_processo:
                 return pagina.endereco
         return None
+    
+    def traduz_endereco_para_pagina(self, endereco: int, endereco_inicial: int):
+        resultado = (endereco - endereco_inicial) % self.tam_pagina_frames
+        if resultado == 0:
+            return resultado
+        else:
+            return ((endereco - endereco_inicial) // self.tam_pagina_frames) + 1
 
 # FUNÇÃO DE IMPRESSÃO DE LOG -------------------------------------------------------------------------------------
 
     def imprimir_estado_memoria(self, log_path: str):
         with open(log_path, "a", encoding="utf-8") as arquivo_logs:
-            arquivo_logs.write(f"\nEstado atual da memória física:\n")
+            arquivo_logs.write(f"\n\nEstado atual da memória física:\n")
             for frame in self.mem_fisica.memoria:
                 if frame.isOcupado():
                     arquivo_logs.write(f"\nFrame {frame.id}: Processo {frame.id_processo}, Página {frame.id_pagina}")

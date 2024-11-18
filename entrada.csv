@@ -8,5 +8,5 @@ Frame Inicial;0
 Pagina Inicial Virtual;1000
 Delay Operacao Normal;1
 Delay Acesso Memoria Secundaria;2
-Caminho Logs;simulacao.log
+Caminho Logs;logs_teste.txt
 Limite de iteracoes;8

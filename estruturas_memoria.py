@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 
 class Frame:
     """
@@ -15,46 +15,26 @@ class Frame:
         """Verifica se o frame está ocupado."""
         return self.ocupado
 
-class LinhaPageTable:
-    """
-    Cada linha da tabela de frames contém o endereço da página na memória virtual e o frame que a aloca"""
-    def __init__(self, pagina: int, frame: Frame):
-        self.pagina = pagina
-        self.frame = frame
-
 class PageTable:
     """
     Representa a tabela de páginas de um processo.
     """
-    def __init__(self, num_paginas: int, tamanho_pagina: int):
+    def __init__(self, num_paginas: int, tamanho_pagina: int, pagina_inicial: int):
         # Inicializa a tabela com None para cada página
-        self.tabela: List[LinhaPageTable] = []
-        for _ in range(num_paginas):
-            self.tabela.append(LinhaPageTable(None, None))
+        self.tabela: Dict[int, Frame] = {}
+        for i in range(num_paginas):
+            self.tabela[pagina_inicial + i] = None
         self.tamanho_pagina = tamanho_pagina
         self.num_paginas = num_paginas
-    
-    def retornar_frame(self, pagina: int):
-        for linha_page_table in self.tabela:
-            if linha_page_table.pagina == pagina:
-                return linha_page_table.frame
-        return -1
-    
-    def atualizar_tabela_paginas(self, pagina: int, frame: Frame):
-        for linha_page_table in self.tabela:
-            if linha_page_table.pagina == pagina:
-                linha_page_table.frame = frame
-                return True
-        return False
 
 class Processo:
     """
     Representa um processo no sistema.
     """
-    def __init__(self, pid: int, num_paginas: int, tamanho_pagina: int):
+    def __init__(self, pid: int, num_paginas: int, tamanho_pagina: int, pagina_inicial: int):
         self.pid = pid
         self.num_paginas = num_paginas
-        self.tab_pags = PageTable(self.num_paginas, tamanho_pagina)
+        self.tab_pags = PageTable(self.num_paginas, tamanho_pagina, pagina_inicial)
         self.memo_virtual = list(range(num_paginas))
 
 class MemFis:
