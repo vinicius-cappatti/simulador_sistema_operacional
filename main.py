@@ -64,19 +64,20 @@ def main():
 
         # 4. Acessar memória física
         sistema_operacional.acessar_memoria(pid_processo_atual, 
-                                            pagina_memoria_virtual_acessada, 
+                                            pagina_memoria_virtual_acessada,
+                                            endereco_atual,
                                             delay_operacao_normal,
                                             delay_acesso_memoria_secundaria,
                                             caminho_logs)
 
         #Implementação da pausa
-        print(f"Acesso {acesso + 1}/{limite_iteracoes}")
+        """print(f"Acesso {acesso + 1}/{limite_iteracoes}")
         opcao = input("Operação pausada, selecione uma opção:\n1. [a]bortar\n2. [c]ontinuar\nescolha sua opção: ").lower().replace(" ", "")
         while opcao != "a" and opcao != "c":
             opcao = input("Selecione uma opção válida [a/c]:").lower().replace(" ", "")
         
         if(opcao == "a"):
-            return
+            return"""
 
 if __name__ == "__main__":
     main()

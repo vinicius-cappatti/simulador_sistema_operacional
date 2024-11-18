@@ -39,17 +39,18 @@ class SO:
 
     # FUNÇÕES DE ACESSO NA MEMÓRIA -------------------------------------------------------------------------------------
 
-    def acessar_memoria(self, pid: int, pagina_acessada: int, delay_normal: int, delay_acesso_mem_sec: int, caminho_logs: str):
+    def acessar_memoria(self, pid: int, pagina_acessada: int, endereco: int, delay_normal: int, delay_acesso_mem_sec: int, caminho_logs: str):
         """
         ARGS:
         * pid: endereço do processo que está tentando acessar a memória
         * pagina_acessada: endereço da página na memória virtual
+        * endereco: é o endereço atual que o processo quer acessar
         * delay_normal: tempo de acesso à memória física
         * delay_acesso_mem_sec: tempo de acesso à memória secundária / virtual
         * caminho_logs: caminho para o arquivo de logs
         """
         with open(caminho_logs, "a", encoding= "utf-8") as arquivo_logs:
-            arquivo_logs.write(f"\nProcesso {pid} está tentando acessar a página {pagina_acessada}")
+            arquivo_logs.write(f"\nProcesso {pid} está tentando acessar o endereço {endereco} da página {pagina_acessada}")
 
             processo = self.processos.get(pid)
             frame = processo.tab_pags.tabela[pagina_acessada]
@@ -90,7 +91,7 @@ class SO:
     def traduz_endereco_para_pagina(self, endereco: int, endereco_inicial: int):
         resultado = (endereco - endereco_inicial) % self.tam_pagina_frames
         if resultado == 0:
-            return resultado
+            return ((endereco - endereco_inicial) // self.tam_pagina_frames)
         else:
             return ((endereco - endereco_inicial) // self.tam_pagina_frames) + 1
 
