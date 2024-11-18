@@ -30,12 +30,20 @@ class SO:
                 arquivo_logs.write(f"\nPágina {endereco_pagina_criada + i} da memória virtual alocada para o processo {pid}")
         time.sleep(delay_padrao)  # Simulando um atraso na criação do processo
 
-    def alocar_memoria_virtual(self, processo: Processo, indice: int, caminho_logs: str):
-        """Aloca um processo na memória virtual e inicializa sua tabela de páginas"""
-        with open(caminho_logs, "a", encoding="utf-8")as arquivo_logs:
-            self.memoria_virtual[indice] = processo
-            processo.tab_pags.criar_na_tabela_de_pagina(indice, None)
-            arquivo_logs.write(f"\nPágina {indice} da memória virtual alocada para o processo {processo.pid}")
+    def inicializar_memoria_virtual(self, qnt_paginas_processo: int, qnt_processos: int, memoria_virtual: int, caminho_logs: str):
+        if qnt_paginas_processo * qnt_processos > memoria_virtual:
+            with open(caminho_logs, "a", encoding="utf-8") as arquivo_logs:
+                arquivo_logs.write(f"ABORTAR: O número de páginas criadas deve ser menor ou igual ao tamanho da memória virtual!!!\n")
+            return False
+        
+        for i in range(memoria_virtual):
+            self.memoria_virtual[i] = None
+        
+        with open(caminho_logs, "a", encoding="utf-8") as arquivo_logs:
+                arquivo_logs.write(f"Memória virtual inicializada com sucesso\n")
+        
+        return True
+
 
     # FUNÇÕES DE ACESSO NA MEMÓRIA -------------------------------------------------------------------------------------
 
@@ -68,6 +76,10 @@ class SO:
             if frame == None:
                 frame = self.mem_fisica.memoria[self.mem_fisica.firstIn]
                 self.mem_fisica.aumenta_first_in()
+                # Atualizar a tabela de páginas do processo quando removemos a página dele no FIFO
+                # Remove referência ao frame na tabela de páginas antiga
+                self.processos.get(frame.id_processo).tab_pags.tabela[frame.id_pagina] = None 
+                
             
             pos_frame = self.mem_fisica.find_posicao_frame(frame)
 

@@ -9,7 +9,6 @@ class Frame:
         self.ocupado = False        # Indica se o frame está ocupado
         self.id_processo = None     # ID do processo que ocupa o frame (se ocupado)
         self.id_pagina = None       # ID da página que ocupa o frame (se ocupado)
-        self.dados = None           # Dados armazenados no frame
 
     def isOcupado(self):
         """Verifica se o frame está ocupado."""

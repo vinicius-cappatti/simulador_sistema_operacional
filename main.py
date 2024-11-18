@@ -29,12 +29,16 @@ with open(caminho_logs, "w") as arquivo_logs:
     arquivo_logs.write("")                                                          # Apaga o conteudo do arquivo caso ele ja existisse
 
 def main():
+    # TODO: Ele tá permitindo criar mais páginas do que o tamanho da memória virtual
 
     # Inicializa o SO com as configurações de 
     sistema_operacional = SO(tam_mem_fis=memoria_real, 
                              id_frame_initial=frame_inicial, 
                              tam_frm_pagina=tamanho_frame_pagina,
                              inicio_memoria_virtual= pagina_inicial_virtual)
+
+    if not sistema_operacional.inicializar_memoria_virtual(qnt_paginas_processo, numero_processos, memoria_virtual, caminho_logs):
+        return
 
     # Cria alguns processos
     endereco_pagina_criada = 1
