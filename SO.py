@@ -47,7 +47,7 @@ class SO:
         time.sleep(delay_mem_sec)
 
         for i in range(qnt_paginas_processo):
-            self.memoria_virtual[endereco_inicial + i] = self.processos.get(pid)
+            self.memoria_virtual[endereco_inicial + i - 1] = self.processos.get(pid)
             with open(caminho_logs, "a", encoding="utf-8") as arquivo_logs:
                 arquivo_logs.write(f"\nProcesso {pid} alocado no endereço {endereco_inicial + i} da memória virtual")
             
@@ -129,9 +129,7 @@ class SO:
         with open(log_path, "a", encoding="utf-8") as arquivo_log:
             arquivo_log.write("\n\nEstado inicial da memoria virtual:")
             for endereco in self.memoria_virtual:
-                if endereco == 0:
-                    continue
-                elif self.memoria_virtual[endereco] == None:
-                    arquivo_log.write(f"\nPágina {endereco}: Livre")
+                if self.memoria_virtual[endereco] == None:
+                    arquivo_log.write(f"\nPágina {endereco + 1}: Livre")
                 else:
-                    arquivo_log.write(f"\nPágina {endereco}: Processo {self.memoria_virtual[endereco].pid}")
+                    arquivo_log.write(f"\nPágina {endereco + 1}: Processo {self.memoria_virtual[endereco].pid}")
