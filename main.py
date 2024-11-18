@@ -50,7 +50,16 @@ def main():
                                            delay_padrao= delay_operacao_normal,
                                            endereco_pagina_criada = endereco_pagina_criada,
                                            caminho_logs= caminho_logs)
+        
+        sistema_operacional.alocar_processo_memoria_virtual(pid= i + 1,
+                                                            qnt_paginas_processo = qnt_paginas_processo,
+                                                            endereco_inicial= endereco_pagina_criada,
+                                                            delay_mem_sec = delay_acesso_memoria_secundaria,
+                                                            caminho_logs= caminho_logs)
+
         endereco_pagina_criada += qnt_paginas_processo
+
+    sistema_operacional.imprimir_memoria_virtual(caminho_logs)
 
     for acesso in range(limite_iteracoes + 1):
         sistema_operacional.imprimir_estado_memoria(caminho_logs)
@@ -58,6 +67,7 @@ def main():
         pid_processo_atual = random.randint(1, numero_processos)
         # 2. Calcular um endereço virtual aleatório que aquele processo pode acessar
         endereco_minimo = pagina_inicial_virtual + tamanho_frame_pagina * qnt_paginas_processo * (pid_processo_atual - 1) + (qnt_paginas_processo * (pid_processo_atual - 1) - 1)
+        
         if pid_processo_atual == 1:
             endereco_minimo = pagina_inicial_virtual # Condição pq essa fórmula é muito chata
         endereco_maximo = pagina_inicial_virtual + tamanho_frame_pagina * qnt_paginas_processo * pid_processo_atual + (qnt_paginas_processo * pid_processo_atual - 2)
@@ -73,15 +83,10 @@ def main():
                                             delay_operacao_normal,
                                             delay_acesso_memoria_secundaria,
                                             caminho_logs)
-
-        #Implementação da pausa
-        """print(f"Acesso {acesso + 1}/{limite_iteracoes}")
-        opcao = input("Operação pausada, selecione uma opção:\n1. [a]bortar\n2. [c]ontinuar\nescolha sua opção: ").lower().replace(" ", "")
-        while opcao != "a" and opcao != "c":
-            opcao = input("Selecione uma opção válida [a/c]:").lower().replace(" ", "")
+    # FIM LAÇO FOR -------------------------------
         
-        if(opcao == "a"):
-            return"""
+    # Imprime status final da memória física
+    sistema_operacional.imprimir_estado_memoria(caminho_logs)
 
 if __name__ == "__main__":
     main()

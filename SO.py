@@ -26,8 +26,6 @@ class SO:
         self.processos[pid] = Processo(pid, paginas_por_processo, tamanho_pagina, endereco_pagina_criada)
         with open(caminho_logs, "a", encoding= "utf-8") as arquivo_logs:
             arquivo_logs.write(f"\n\nProcesso {pid} criado com tamanho {paginas_por_processo} e tamanho de página {tamanho_pagina}")
-            for i in range(paginas_por_processo):
-                arquivo_logs.write(f"\nPágina {endereco_pagina_criada + i} da memória virtual alocada para o processo {pid}")
         time.sleep(delay_padrao)  # Simulando um atraso na criação do processo
 
     def inicializar_memoria_virtual(self, qnt_paginas_processo: int, qnt_processos: int, memoria_virtual: int, caminho_logs: str):
@@ -44,7 +42,15 @@ class SO:
         
         return True
 
+    def alocar_processo_memoria_virtual(self, pid: int, qnt_paginas_processo: int, endereco_inicial: int, delay_mem_sec: int,  caminho_logs: str):
+        
+        time.sleep(delay_mem_sec)
 
+        for i in range(qnt_paginas_processo):
+            self.memoria_virtual[endereco_inicial + i] = self.processos.get(pid)
+            with open(caminho_logs, "a", encoding="utf-8") as arquivo_logs:
+                arquivo_logs.write(f"\nProcesso {pid} alocado no endereço {endereco_inicial + i} da memória virtual")
+            
     # FUNÇÕES DE ACESSO NA MEMÓRIA -------------------------------------------------------------------------------------
 
     def acessar_memoria(self, pid: int, pagina_acessada: int, endereco: int, delay_normal: int, delay_acesso_mem_sec: int, caminho_logs: str):
@@ -118,5 +124,14 @@ class SO:
                 else:
                     arquivo_logs.write(f"\nFrame {frame.id}: Livre")
             arquivo_logs.write(f"\nFrame mais antigo é {self.mem_fisica.firstIn}\n")
-
     
+    def imprimir_memoria_virtual(self, log_path: str):
+        with open(log_path, "a", encoding="utf-8") as arquivo_log:
+            arquivo_log.write("\n\nEstado inicial da memoria virtual:")
+            for endereco in self.memoria_virtual:
+                if endereco == 0:
+                    continue
+                elif self.memoria_virtual[endereco] == None:
+                    arquivo_log.write(f"\nPágina {endereco}: Livre")
+                else:
+                    arquivo_log.write(f"\nPágina {endereco}: Processo {self.memoria_virtual[endereco].pid}")

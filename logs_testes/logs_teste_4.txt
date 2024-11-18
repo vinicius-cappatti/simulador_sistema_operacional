@@ -1,34 +1,48 @@
+Memória virtual inicializada com sucesso
 
 
 Processo 1 criado com tamanho 4 e tamanho de página 1000
-Página 1 da memória virtual alocada para o processo 1
-Página 2 da memória virtual alocada para o processo 1
-Página 3 da memória virtual alocada para o processo 1
-Página 4 da memória virtual alocada para o processo 1
+Processo 1 alocado no endereço 1 da memória virtual
+Processo 1 alocado no endereço 2 da memória virtual
+Processo 1 alocado no endereço 3 da memória virtual
+Processo 1 alocado no endereço 4 da memória virtual
 
 Processo 2 criado com tamanho 4 e tamanho de página 1000
-Página 5 da memória virtual alocada para o processo 2
-Página 6 da memória virtual alocada para o processo 2
-Página 7 da memória virtual alocada para o processo 2
-Página 8 da memória virtual alocada para o processo 2
+Processo 2 alocado no endereço 5 da memória virtual
+Processo 2 alocado no endereço 6 da memória virtual
+Processo 2 alocado no endereço 7 da memória virtual
+Processo 2 alocado no endereço 8 da memória virtual
 
 Processo 3 criado com tamanho 4 e tamanho de página 1000
-Página 9 da memória virtual alocada para o processo 3
-Página 10 da memória virtual alocada para o processo 3
-Página 11 da memória virtual alocada para o processo 3
-Página 12 da memória virtual alocada para o processo 3
+Processo 3 alocado no endereço 9 da memória virtual
+Processo 3 alocado no endereço 10 da memória virtual
+Processo 3 alocado no endereço 11 da memória virtual
+Processo 3 alocado no endereço 12 da memória virtual
 
 Processo 4 criado com tamanho 4 e tamanho de página 1000
-Página 13 da memória virtual alocada para o processo 4
-Página 14 da memória virtual alocada para o processo 4
-Página 15 da memória virtual alocada para o processo 4
-Página 16 da memória virtual alocada para o processo 4
+Processo 4 alocado no endereço 13 da memória virtual
+Processo 4 alocado no endereço 14 da memória virtual
+Processo 4 alocado no endereço 15 da memória virtual
+Processo 4 alocado no endereço 16 da memória virtual
 
-Processo 5 criado com tamanho 4 e tamanho de página 1000
-Página 17 da memória virtual alocada para o processo 5
-Página 18 da memória virtual alocada para o processo 5
-Página 19 da memória virtual alocada para o processo 5
-Página 20 da memória virtual alocada para o processo 5
+Estado inicial da memoria virtual:
+Página 0: Livre
+Página 1: Processo 1
+Página 2: Processo 1
+Página 3: Processo 1
+Página 4: Processo 1
+Página 5: Processo 2
+Página 6: Processo 2
+Página 7: Processo 2
+Página 8: Processo 2
+Página 9: Processo 3
+Página 10: Processo 3
+Página 11: Processo 3
+Página 12: Processo 3
+Página 13: Processo 4
+Página 14: Processo 4
+Página 15: Processo 4
+Página 16: Processo 4
 
 Estado atual da memória física:
 
@@ -38,240 +52,73 @@ Frame 2000: Livre
 Frame 3000: Livre
 Frame mais antigo é 0
 
-Processo 1 está tentando acessar o endereço 3984 da página 4
-[PAGE FAULT] Página 4 não está na memória física
-Frame 0 atualizado com sucesso!!! Agora ele contém a página 4
+Processo 4 está tentando acessar o endereço 14681 da página 15
+[PAGE FAULT] Página 15 não está na memória física
+Frame 0 atualizado com sucesso!!! Agora ele contém a página 15
 
 Estado atual da memória física:
 
-Frame 0: Processo 1, Página 4
+Frame 0: Processo 4, Página 15
 Frame 1000: Livre
 Frame 2000: Livre
 Frame 3000: Livre
 Frame mais antigo é 0
 
-Processo 3 está tentando acessar o endereço 9555 da página 10
-[PAGE FAULT] Página 10 não está na memória física
-Frame 1000 atualizado com sucesso!!! Agora ele contém a página 10
+Processo 1 está tentando acessar o endereço 322 da página 1
+[PAGE FAULT] Página 1 não está na memória física
+Frame 1000 atualizado com sucesso!!! Agora ele contém a página 1
 
 Estado atual da memória física:
 
-Frame 0: Processo 1, Página 4
-Frame 1000: Processo 3, Página 10
+Frame 0: Processo 4, Página 15
+Frame 1000: Processo 1, Página 1
 Frame 2000: Livre
 Frame 3000: Livre
 Frame mais antigo é 0
 
-Processo 3 está tentando acessar o endereço 10084 da página 11
+Processo 3 está tentando acessar o endereço 10525 da página 11
 [PAGE FAULT] Página 11 não está na memória física
 Frame 2000 atualizado com sucesso!!! Agora ele contém a página 11
 
 Estado atual da memória física:
 
-Frame 0: Processo 1, Página 4
-Frame 1000: Processo 3, Página 10
+Frame 0: Processo 4, Página 15
+Frame 1000: Processo 1, Página 1
 Frame 2000: Processo 3, Página 11
 Frame 3000: Livre
 Frame mais antigo é 0
 
-Processo 3 está tentando acessar o endereço 9773 da página 10
-Processo 3 acessou o frame 1000 que contém a página 10
+Processo 4 está tentando acessar o endereço 14112 da página 15
+Processo 4 acessou o frame 0 que contém a página 15
 
 Estado atual da memória física:
 
-Frame 0: Processo 1, Página 4
-Frame 1000: Processo 3, Página 10
+Frame 0: Processo 4, Página 15
+Frame 1000: Processo 1, Página 1
 Frame 2000: Processo 3, Página 11
 Frame 3000: Livre
 Frame mais antigo é 0
 
-Processo 1 está tentando acessar o endereço 3310 da página 4
-Processo 1 acessou o frame 0 que contém a página 4
-
-Estado atual da memória física:
-
-Frame 0: Processo 1, Página 4
-Frame 1000: Processo 3, Página 10
-Frame 2000: Processo 3, Página 11
-Frame 3000: Livre
-Frame mais antigo é 0
-
-Processo 5 está tentando acessar o endereço 18917 da página 19
-[PAGE FAULT] Página 19 não está na memória física
-Frame 3000 atualizado com sucesso!!! Agora ele contém a página 19
-
-Estado atual da memória física:
-
-Frame 0: Processo 1, Página 4
-Frame 1000: Processo 3, Página 10
-Frame 2000: Processo 3, Página 11
-Frame 3000: Processo 5, Página 19
-Frame mais antigo é 0
-
-Processo 5 está tentando acessar o endereço 17916 da página 18
-[PAGE FAULT] Página 18 não está na memória física
-Frame 0 atualizado com sucesso!!! Agora ele contém a página 18
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 3, Página 10
-Frame 2000: Processo 3, Página 11
-Frame 3000: Processo 5, Página 19
-Frame mais antigo é 1
-
-Processo 5 está tentando acessar o endereço 18051 da página 19
-Processo 5 acessou o frame 3000 que contém a página 19
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 3, Página 10
-Frame 2000: Processo 3, Página 11
-Frame 3000: Processo 5, Página 19
-Frame mais antigo é 1
-
-Processo 4 está tentando acessar o endereço 14279 da página 15
-[PAGE FAULT] Página 15 não está na memória física
-Frame 1000 atualizado com sucesso!!! Agora ele contém a página 15
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 4, Página 15
-Frame 2000: Processo 3, Página 11
-Frame 3000: Processo 5, Página 19
-Frame mais antigo é 2
-
-Processo 4 está tentando acessar o endereço 13371 da página 14
-[PAGE FAULT] Página 14 não está na memória física
-Frame 2000 atualizado com sucesso!!! Agora ele contém a página 14
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 4, Página 15
-Frame 2000: Processo 4, Página 14
-Frame 3000: Processo 5, Página 19
-Frame mais antigo é 3
-
-Processo 3 está tentando acessar o endereço 11268 da página 12
-[PAGE FAULT] Página 12 não está na memória física
-Frame 3000 atualizado com sucesso!!! Agora ele contém a página 12
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 4, Página 15
-Frame 2000: Processo 4, Página 14
-Frame 3000: Processo 3, Página 12
-Frame mais antigo é 0
-
-Processo 4 está tentando acessar o endereço 13265 da página 14
-Processo 4 acessou o frame 2000 que contém a página 14
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 4, Página 15
-Frame 2000: Processo 4, Página 14
-Frame 3000: Processo 3, Página 12
-Frame mais antigo é 0
-
-Processo 4 está tentando acessar o endereço 13058 da página 14
-Processo 4 acessou o frame 2000 que contém a página 14
-
-Estado atual da memória física:
-
-Frame 0: Processo 5, Página 18
-Frame 1000: Processo 4, Página 15
-Frame 2000: Processo 4, Página 14
-Frame 3000: Processo 3, Página 12
-Frame mais antigo é 0
-
-Processo 2 está tentando acessar o endereço 5708 da página 6
+Processo 2 está tentando acessar o endereço 5542 da página 6
 [PAGE FAULT] Página 6 não está na memória física
-Frame 0 atualizado com sucesso!!! Agora ele contém a página 6
+Frame 3000 atualizado com sucesso!!! Agora ele contém a página 6
 
 Estado atual da memória física:
 
-Frame 0: Processo 2, Página 6
-Frame 1000: Processo 4, Página 15
-Frame 2000: Processo 4, Página 14
-Frame 3000: Processo 3, Página 12
-Frame mais antigo é 1
-
-Processo 3 está tentando acessar o endereço 10371 da página 11
-[PAGE FAULT] Página 11 não está na memória física
-Frame 1000 atualizado com sucesso!!! Agora ele contém a página 11
-
-Estado atual da memória física:
-
-Frame 0: Processo 2, Página 6
-Frame 1000: Processo 3, Página 11
-Frame 2000: Processo 4, Página 14
-Frame 3000: Processo 3, Página 12
-Frame mais antigo é 2
-
-Processo 5 está tentando acessar o endereço 16634 da página 17
-[PAGE FAULT] Página 17 não está na memória física
-Frame 2000 atualizado com sucesso!!! Agora ele contém a página 17
-
-Estado atual da memória física:
-
-Frame 0: Processo 2, Página 6
-Frame 1000: Processo 3, Página 11
-Frame 2000: Processo 5, Página 17
-Frame 3000: Processo 3, Página 12
-Frame mais antigo é 3
-
-Processo 1 está tentando acessar o endereço 3887 da página 4
-[PAGE FAULT] Página 4 não está na memória física
-Frame 3000 atualizado com sucesso!!! Agora ele contém a página 4
-
-Estado atual da memória física:
-
-Frame 0: Processo 2, Página 6
-Frame 1000: Processo 3, Página 11
-Frame 2000: Processo 5, Página 17
-Frame 3000: Processo 1, Página 4
+Frame 0: Processo 4, Página 15
+Frame 1000: Processo 1, Página 1
+Frame 2000: Processo 3, Página 11
+Frame 3000: Processo 2, Página 6
 Frame mais antigo é 0
 
-Processo 4 está tentando acessar o endereço 15613 da página 16
-[PAGE FAULT] Página 16 não está na memória física
-Frame 0 atualizado com sucesso!!! Agora ele contém a página 16
+Processo 2 está tentando acessar o endereço 4190 da página 5
+[PAGE FAULT] Página 5 não está na memória física
+Frame 0 atualizado com sucesso!!! Agora ele contém a página 5
 
 Estado atual da memória física:
 
-Frame 0: Processo 4, Página 16
-Frame 1000: Processo 3, Página 11
-Frame 2000: Processo 5, Página 17
-Frame 3000: Processo 1, Página 4
+Frame 0: Processo 2, Página 5
+Frame 1000: Processo 1, Página 1
+Frame 2000: Processo 3, Página 11
+Frame 3000: Processo 2, Página 6
 Frame mais antigo é 1
-
-Processo 4 está tentando acessar o endereço 13738 da página 14
-[PAGE FAULT] Página 14 não está na memória física
-Frame 1000 atualizado com sucesso!!! Agora ele contém a página 14
-
-Estado atual da memória física:
-
-Frame 0: Processo 4, Página 16
-Frame 1000: Processo 4, Página 14
-Frame 2000: Processo 5, Página 17
-Frame 3000: Processo 1, Página 4
-Frame mais antigo é 2
-
-Processo 1 está tentando acessar o endereço 1191 da página 2
-[PAGE FAULT] Página 2 não está na memória física
-Frame 2000 atualizado com sucesso!!! Agora ele contém a página 2
-
-Estado atual da memória física:
-
-Frame 0: Processo 4, Página 16
-Frame 1000: Processo 4, Página 14
-Frame 2000: Processo 1, Página 2
-Frame 3000: Processo 1, Página 4
-Frame mais antigo é 3
-
-Processo 4 está tentando acessar o endereço 15913 da página 16
-Processo 4 acessou o frame 0 que contém a página 16
